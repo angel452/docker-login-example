@@ -33,7 +33,8 @@
 /frontend/testem.log
 /frontend/typings
 /frontend/.vscode
-/frontend/src/environments/*
+/frontend/src/environments/environment.ts
+/frontend/src/environments/environment.prod.ts
 
 # ---------------------------
 # General (para todo el proyecto)
