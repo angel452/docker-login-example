@@ -20,7 +20,7 @@ services:
     volumes:
       - ./backend:/usr/src/app
     env_file:
-      - /backend/.env
+      - ./backend/.env
     environment:
       - TZ=America/Lima
     depends_on:
