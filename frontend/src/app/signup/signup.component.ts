@@ -50,6 +50,16 @@ export class SignupComponent {
       },
       error: (error) => {
         console.error('Sign up failed:', error);
+
+        if (error.status === 400 && error.error?.message) {
+          if (Array.isArray(error.error.message)) {
+            this.errorMessage = error.error.message.join('\n'); // une los mensajes con salto de línea
+          } else {
+            this.errorMessage = error.error.message;
+          }
+        } else {
+          this.errorMessage = 'Ocurrió un error inesperado.';
+        }
       }
     });
 

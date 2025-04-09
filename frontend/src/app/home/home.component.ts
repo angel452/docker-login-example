@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Inject, PLATFORM_ID } from '@angular/core';
 import { ControlUserService } from './services/control-user.service';
-import { CommonModule } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -14,10 +14,15 @@ export class HomeComponent {
   editingUserId: number | null = null;
   editedUser: any = {};
 
-  constructor(private controlUserService: ControlUserService) {}
+  constructor(
+    private controlUserService: ControlUserService,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {}
 
   ngOnInit(): void {
-    this.loadUsers();
+    if (isPlatformBrowser(this.platformId)) {
+      this.loadUsers();
+    }
   }
 
   loadUsers(): void {

@@ -44,7 +44,7 @@ export class AuthService {
     if (!user) {
       return {
         success: false,
-        message: 'User not found',
+        message: 'User not found. Put a valid email',
         data: null,
       };
     }
