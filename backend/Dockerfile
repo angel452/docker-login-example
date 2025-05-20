@@ -60,11 +60,11 @@ RUN npm install -g @nestjs/cli
 EXPOSE 3000
 
 # Modo desarrollo, cambiar a `node dist/main` en producción
-# CMD ["npm", "run", "start:dev"]
+CMD ["npm", "run", "start:dev"]
 # CMD ["npm", "run", "dist/main"]
-CMD ["sh", "-c", "echo 'Esperando a MySQL...'; \
-  until nc -z mysql 3306; do sleep 2; done; \
-  echo 'Base de datos lista. Ejecutando migraciones...'; \
-  npx prisma migrate deploy; \
-  echo 'Iniciando backend...'; \
-  npm run start:dev"]
+# CMD ["sh", "-c", "echo 'Esperando a MySQL...'; \
+#   until nc -z mysql 3306; do sleep 2; done; \
+#   echo 'Base de datos lista. Ejecutando migraciones...'; \
+#   npx prisma migrate deploy; \
+#   echo 'Iniciando backend...'; \
+#   npm run start:dev"]
