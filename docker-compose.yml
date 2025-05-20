@@ -1,4 +1,20 @@
 services:
+  mysql:
+    container_name: mysql
+    image: mysql:8.0
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    volumes:
+      - mysql_data:/var/lib/mysql
+    env_file:
+      - .env
+    restart: always
+
   frontend:
     container_name: angular-frontend
     build:
@@ -17,30 +33,14 @@ services:
       dockerfile: Dockerfile
     ports:
       - "3000:3000"
-    volumes:
-      - ./backend:/usr/src/app
+    # volumes:
+    #   - ./backend:/usr/src/app
     env_file:
       - ./backend/.env
     environment:
       - TZ=America/Lima
     depends_on:
       - mysql
-    restart: always
-
-  mysql:
-    container_name: mysql
-    image: mysql:8.0
-    ports:
-      - "3306:3306"
-    environment:
-      MYSQL_DATABASE: ${MYSQL_DATABASE}
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-    volumes:
-      - mysql_data:/var/lib/mysql
-    env_file:
-      - .env
     restart: always
 
 volumes:
